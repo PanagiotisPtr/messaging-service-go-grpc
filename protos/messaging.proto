@@ -4,6 +4,7 @@ option go_package = "panagiotisptr/messaging/protos";
 
 service Messaging {
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+  rpc GetMessagesBetweenUsers(GetMessagesBetweenUsersRequest) returns (GetMessagesBetweenUsersResponse);
 }
 
 message SendMessageRequest {
@@ -14,4 +15,20 @@ message SendMessageRequest {
 
 message SendMessageResponse {
   bool Sent = 1;
+}
+
+message GetMessagesBetweenUsersRequest {
+  string From = 1;
+  string To = 2;
+}
+
+message Message {
+  string From = 1;
+  string To = 2;
+  int64 Timestamp = 3;
+  string Content = 4;
+}
+
+message GetMessagesBetweenUsersResponse {
+  repeated Message Messages = 1;
 }
